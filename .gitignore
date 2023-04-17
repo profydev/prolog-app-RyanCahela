@@ -43,3 +43,6 @@ yarn-error.log*
 
 # Cypress test videos
 cypress/videos/
+
+# Design Mockups
+/Design_Images
