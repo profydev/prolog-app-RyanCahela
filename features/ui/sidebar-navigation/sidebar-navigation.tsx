@@ -149,6 +149,14 @@ const CollapseMenuItem = styled(MenuItemButton)`
 
   @media (min-width: ${breakpoint("desktop")}) {
     display: flex;
+
+    [data-icon-animation-hook] {
+      transition-property: transform;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-in-out;
+      transform: ${(props) =>
+        props.isCollapsed ? " rotate(180deg)" : " rotate(0deg)"};
+    }
   }
 `;
 
