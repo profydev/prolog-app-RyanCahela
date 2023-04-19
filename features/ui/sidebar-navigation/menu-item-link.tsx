@@ -9,6 +9,7 @@ type MenuItemProps = {
   href: string;
   isActive: boolean;
   isCollapsed: boolean;
+  "data-cy"?: string;
 };
 
 export const ListItem = styled.li<{ isActive?: boolean }>`
@@ -44,10 +45,11 @@ export function MenuItemLink({
   iconSrc,
   isActive,
   isCollapsed,
+  "data-cy": dataCy,
 }: MenuItemProps) {
   return (
     <ListItem isActive={isActive}>
-      <Anchor href={href}>
+      <Anchor href={href} data-cy={dataCy}>
         <Icon src={iconSrc} alt={`${text} icon`} /> {!isCollapsed && text}
       </Anchor>
     </ListItem>
