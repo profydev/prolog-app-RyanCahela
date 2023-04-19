@@ -39,7 +39,7 @@ const Container = styled.div<{ isCollapsed: boolean }>`
           width: 5.1875rem;
         }
 
-        ${Logo} {
+        ${DesktopLogo} {
           width: 1.4375rem;
         }
       `};
@@ -68,11 +68,19 @@ const Header = styled.header`
   }
 `;
 
-const Logo = styled.img`
-  width: 7.375rem;
-
+const DesktopLogo = styled.img`
+  display: none;
   @media (min-width: ${breakpoint("desktop")}) {
+    display: inline;
+    width: 7.375rem;
     margin: ${space(0, 4)};
+  }
+`;
+
+const MobileLogo = styled.img`
+  width: 7.375rem;
+  @media (min-width: ${breakpoint("desktop")}) {
+    display: none;
   }
 `;
 
@@ -168,15 +176,25 @@ export function SidebarNavigation() {
     <Container isCollapsed={isSidebarCollapsed}>
       <FixedContainer>
         <Header>
-          <Logo
+          <MobileLogo
+            src={"/icons/logo-large.svg"}
+            alt="logo"
+            data-cy="mobile-logo"
+          />
+          <DesktopLogo
             src={
               isSidebarCollapsed
                 ? "/icons/logo-small.svg"
                 : "/icons/logo-large.svg"
             }
             alt="logo"
+            data-cy="desktop-logo"
           />
-          <MenuButton onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>
+          <MenuButton
+            onClick={() => {
+              setMobileMenuOpen(!isMobileMenuOpen);
+            }}
+          >
             <MenuIcon
               src={isMobileMenuOpen ? "/icons/close.svg" : "/icons/menu.svg"}
               alt={isMobileMenuOpen ? "close menu" : "open menu"}

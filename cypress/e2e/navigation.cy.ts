@@ -50,6 +50,22 @@ describe("Sidebar Navigation", () => {
         "mailto:support@prolog-app.com?subject=Support%20Request"
       );
     });
+
+    it("Displays DesktopLogo component not MobileLogo component", () => {
+      cy.get('[data-cy="desktop-logo"]').should("be.visible");
+      cy.get('[data-cy="mobile-logo"').should("be.hidden");
+    });
+
+    it("Shows small logo on menu collapse", () => {
+      // collapse navigation
+      cy.get("nav").contains("Collapse").click();
+
+      cy.get('[data-cy="desktop-logo"]').should(
+        "have.attr",
+        "src",
+        "/icons/logo-small.svg"
+      );
+    });
   });
 
   context("mobile resolution", () => {
@@ -98,6 +114,11 @@ describe("Sidebar Navigation", () => {
       cy.get("img[alt='close menu']").click();
       cy.wait(500);
       isNotInViewport("nav");
+    });
+
+    it("displays MobileLogo component not DesktopLogo component", () => {
+      cy.get('[data-cy="mobile-logo"]').should("be.visible");
+      cy.get('[data-cy="desktop-logo"]').should("be.hidden");
     });
   });
 });
